@@ -1,15 +1,19 @@
+/* Google font */
 body{
     font-family: 'Poppins', sans-serif;
 }
 
+/* Header Title */
 #header-title{
     color: #842d85;
 }
 
+/* Header Text */
 #header-paragraph{
     color: #f272ed;
 }
 
+/* Search Button */
 #search-button{
     border: 4px solid white;
     background-color:#842d85;
