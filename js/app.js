@@ -16,15 +16,19 @@ const showPhoneDetails = (phones) => {
         <div class="card-group container-fluid">
             <div id="phone-container1" class="card phone-container border-3">
               <div class="card-body">
-                <h2 class="card-title">Name:cool </h2>
-                <h4 class="card-text">Release date: </h4>
-               <button>Details</button>
+                <h2 class="card-title">Name:${phone.phone_name} </h2>
+                <h4 class="card-text">Brand:${phone.brand} </h4>
+                <h4 class="card-text">Slug:${phone.slug} </h4>
+               
+              </div>
+              <div>
+              <button>Details</button>
               </div>
             </div>
             <div id="phone-container2" class="card phone-container border-3">
             
               <div class="card-body">
-                <img src="..." class="card-img-top" alt="...">
+                <img src="${phone.image}" class="card-img-top w-75" alt="...">
                 
               </div>
               <button>Details</button>
@@ -33,9 +37,9 @@ const showPhoneDetails = (phones) => {
               
               <div class="card-body">
                 <h3 class="card-title">Brand: </h3>
-                
-                <button>Details</button>
+               
               </div>
+              <button>Details</button>
             </div>
           </div>
        </div>
