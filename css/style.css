@@ -1,0 +1,17 @@
+body{
+    font-family: 'Poppins', sans-serif;
+}
+
+#header-title{
+    color: #842d85;
+}
+
+#header-paragraph{
+    color: #f272ed;
+}
+
+#search-button{
+    border: 4px solid white;
+    background-color:#842d85;
+    color: white;
+}
