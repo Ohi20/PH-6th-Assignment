@@ -19,3 +19,19 @@ body{
     background-color:#842d85;
     color: white;
 }
+
+/* Card text */
+h2{
+    color: #842d85;
+}
+h4{
+    color: #f272ed;
+}
+
+/* card Button */
+#card-button{
+    background-color: #842d85;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
