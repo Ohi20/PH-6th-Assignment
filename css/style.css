@@ -10,7 +10,7 @@ body{
 
 /* Header Text */
 #header-paragraph{
-    color: #f272ed;
+    color: lightcoral;
 }
 
 /* Search Button */
@@ -18,14 +18,6 @@ body{
     border: 4px solid white;
     background-color:#842d85;
     color: white;
-}
-
-/* Card text */
-h2{
-    color: #842d85;
-}
-h4{
-    color: #f272ed;
 }
 
 /* card Button */

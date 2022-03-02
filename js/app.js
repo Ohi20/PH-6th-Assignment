@@ -23,7 +23,7 @@ const showPhoneDetails = (phones) => {
     const click = document.getElementById('no-result');
     const div = document.createElement('div');
     div.innerHTML = `
-    <h1 class= "text-center mt-5 text-danger">No Results Found! write something to search.</h1>
+    <h1 class= "text-center mt-5 text-danger">No Phone Found! write something to search.</h1>
     `
     click.appendChild(div);
   }
@@ -40,42 +40,37 @@ const showPhoneDetails = (phones) => {
         <div class="card-group container-fluid">
             <div class="card phone-container border-3">
               <div class="card-body">
-                <h2 class="card-title">Name: ${phone.phone_name} </h2>
-                
-                
-               
+                <h2 class="card-title">Name:<span class="text-primary" > ${phone.phone_name} </span> </h2>
               </div>
-              <div>
-              <button onclick="loadPhoneDetails('${phone.slug}')" id="card-button" >Details</button>
-              </div>
+              <div class="text-center
+          mb-3">
+          <button  onclick="loadPhoneDetails('${phone.slug}')" id="card-button" >Details</button>
+          </div>
             </div>
             <div class="card phone-container border-3">
-            
               <div class="card-body">
                 <img src="${phone.image}" class="card-img-top w-75" alt="...">
-                
               </div>
-              <div>
-              <button onclick="loadPhoneDetails('${phone.slug}')" id="card-button" >Details</button>
+              <div class="text-center
+              mb-3">
+              <button  onclick="loadPhoneDetails('${phone.slug}')" id="card-button" >Details</button>
               </div>
             </div>
             <div class="card border-3">
-              
               <div class="card-body">
-                <h3 class="card-title">Brand: ${phone.brand} </h3>
-            
-          </div>
-          <div>
-          <button onclick="loadPhoneDetails('${phone.slug}')" id="card-button" >Details</button>
+                <h3 class="card-title">Brand:<span class="text-primary"> ${phone.brand} </span> </h3>
+             </div>
+          <div class="text-center
+          mb-3">
+          <button  onclick="loadPhoneDetails('${phone.slug}')" id="card-button" >Details</button>
           </div>
        </div>
     `
     parent.appendChild(div);
    }); 
-   
-    
 }
 
+// get phone details data
 const loadPhoneDetails = (phoneId) => {
      const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
      fetch(url)
@@ -83,22 +78,25 @@ const loadPhoneDetails = (phoneId) => {
      .then(value => displayPhoneDetails(value.data))
 }
 
+// show phone details
 const displayPhoneDetails = mobile => {
-  
   const phoneDetails = document.getElementById('phone-details');
+  phoneDetails.innerHTML = '';
   const div = document.createElement('div');
   div.classList.add('card');
   div.innerHTML = `
   <div>
-  <img src="${mobile.image}" class="card-img-top w-25" alt="...">
+  <img class="card-img-top w-25  " src="${mobile.image}"  alt="...">
   </div>
   <div class="card-body">
-    <h5 class="card-title">Phone Name: ${mobile.name}</h5>
-    <h5 class="card-title">Info: ${mobile.releaseDate}</h5>
-    <h5 class="card-title">Sensors: ${mobile.mainFeatures.sensors}</h5>
-    <h5 class="card-title">Others: ${mobile.others}</h5>
-    
-  </div>
+    <h4 class="card-title text-center text-primary">Phone Name: ${mobile.name}</h4>
+    <h4 class="card-title text-center text-primary">Memory: ${mobile.mainFeatures.memory}</h4>
+    <h4 class="card-title text-center text-primary">Info: ${mobile.releaseDate}</h4>
+    <h4 class="card-title text-center text-primary">Sensors: ${mobile.mainFeatures.sensors}</h4>
+    <h4 class="card-title text-center text-primary">Others: ${mobile.others}</h4>
+    <h4 class="card-title text-center text-primary">Storage: ${mobile.mainFeatures.storage}</h4>
+    <h4 class="card-title text-center text-primary">Slug: ${mobile.slug}</h4>
+   </div>
   `
   phoneDetails.appendChild(div);
 }
