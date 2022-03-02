@@ -15,7 +15,7 @@ const allPhone = () => {
 }
 
 const showPhoneDetails = (phones) => {
-   console.log(phones);
+  //  console.log(phones);
    phones.forEach(phone => {
     const parent = document.getElementById("phone-container");
     const div = document.createElement('div');
@@ -30,7 +30,7 @@ const showPhoneDetails = (phones) => {
                
               </div>
               <div>
-              <button onclick="phoneDetails('hello')" id="card-button" >Details</button>
+              <button onclick="loadPhoneDetails('${phone.slug}')" id="card-button" >Details</button>
               </div>
             </div>
             <div class="card phone-container border-3">
@@ -39,7 +39,9 @@ const showPhoneDetails = (phones) => {
                 <img src="${phone.image}" class="card-img-top w-75" alt="...">
                 
               </div>
-             
+              <div>
+              <button onclick="loadPhoneDetails('${phone.slug}')" id="card-button" >Details</button>
+              </div>
             </div>
             <div class="card border-3">
               
@@ -47,22 +49,46 @@ const showPhoneDetails = (phones) => {
                 <h3 class="card-title">Brand: ${phone.brand} </h3>
             
           </div>
+          <div>
+          <button onclick="loadPhoneDetails('${phone.slug}')" id="card-button" >Details</button>
+          </div>
        </div>
     `
     parent.appendChild(div);
    }); 
    
-    //  console.log(phone);
-    //  console.log(phones);
+    // console.log(phone);
+    // console.log(phones);
     // console.log(phone.slug);
 }
 
-const phoneDetails = (phoneId) => {
-    console.log(phoneId);
-    // const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
-    // fetch(url)
-    // .then(res => res.json())
-    // .then(value => console.log(value))
+const loadPhoneDetails = (phoneId) => {
+    // console.log(phoneId);
+     const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
+     fetch(url)
+     .then(res => res.json())
+     .then(value => displayPhoneDetails(value.data))
+}
+// console.log()
+const displayPhoneDetails = mobile => {
+  // console.log(mobile);
+  const phoneDetails = document.getElementById('phone-details');
+  const div = document.createElement('div');
+  div.classList.add('card');
+  div.innerHTML = `
+  <div>
+  <img src="${mobile.image}" class="card-img-top w-25" alt="...">
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Phone Name: ${mobile.name}</h5>
+    <h5 class="card-title">Info: ${mobile.releaseDate}</h5>
+    <h5 class="card-title">Sensors: ${mobile.mainFeatures.sensors}</h5>
+    <h5 class="card-title">Others: ${mobile.others}</h5>
+    
+  </div>
+  `
+  console.log(mobile.name);
+  phoneDetails.appendChild(div);
 }
 
-
+// {mainFeatures: {…}, slug: 'samsung_galaxy_a21s-10239', name: 'Galaxy A21s', releaseDate: 'Released 2020, June 02', brand: 'Samsung', …}
