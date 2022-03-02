@@ -1,21 +1,37 @@
 const allPhone = () => {
     const searchValue = document.getElementById("search-box");
     const searchText = searchValue.value;
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+    
+    // clear data
     searchValue.value = '';
+    // load data
+    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     fetch(url)
     .then(res => res.json())
     .then(data => showPhoneDetails(data.data))
-    // console.log(url);
-    //  const keys = Object.keys(data.data);
-    // console.log(res.json());
-    // showPhoneDetails(data.data)
-    //  console.log(keys);
-       
+          
 }
 
 const showPhoneDetails = (phones) => {
-  //  console.log(phones);
+  
+  // clear previous results
+  const searchResult = document.getElementById('phone-container');
+  searchResult.innerHTML = '';
+
+  // No results emty field
+  if(phones.length == 0){
+    const click = document.getElementById('no-result');
+    const div = document.createElement('div');
+    div.innerHTML = `
+    <h1 class= "text-center mt-5 text-danger">No Results Found! write something to search.</h1>
+    `
+    click.appendChild(div);
+  }
+  else{
+    document.getElementById("no-result").style.display = "none";
+  }
+
+  // running loop to all phones
    phones.forEach(phone => {
     const parent = document.getElementById("phone-container");
     const div = document.createElement('div');
@@ -57,21 +73,18 @@ const showPhoneDetails = (phones) => {
     parent.appendChild(div);
    }); 
    
-    // console.log(phone);
-    // console.log(phones);
-    // console.log(phone.slug);
+    
 }
 
 const loadPhoneDetails = (phoneId) => {
-    // console.log(phoneId);
      const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
      fetch(url)
      .then(res => res.json())
      .then(value => displayPhoneDetails(value.data))
 }
-// console.log()
+
 const displayPhoneDetails = mobile => {
-  // console.log(mobile);
+  
   const phoneDetails = document.getElementById('phone-details');
   const div = document.createElement('div');
   div.classList.add('card');
@@ -87,8 +100,6 @@ const displayPhoneDetails = mobile => {
     
   </div>
   `
-  console.log(mobile.name);
   phoneDetails.appendChild(div);
 }
 
-// {mainFeatures: {…}, slug: 'samsung_galaxy_a21s-10239', name: 'Galaxy A21s', releaseDate: 'Released 2020, June 02', brand: 'Samsung', …}
